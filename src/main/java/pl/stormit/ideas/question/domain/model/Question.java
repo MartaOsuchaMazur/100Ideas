@@ -1,9 +1,11 @@
 package pl.stormit.ideas.question.domain.model;
 
 import java.util.StringJoiner;
+import java.util.UUID;
 
 public class Question {
 
+    private UUID id;
     private String name;
 
     public Question() {
@@ -11,6 +13,15 @@ public class Question {
 
     public Question(String name) {
         this.name = name;
+        this.id = UUID.randomUUID();
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -24,6 +35,7 @@ public class Question {
     @Override
     public String toString() {
         return new StringJoiner(", ", Question.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
                 .add("name='" + name + "'")
                 .toString();
     }

@@ -1,13 +1,12 @@
 package pl.stormit.ideas.question.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import pl.stormit.ideas.question.domain.model.Question;
 import pl.stormit.ideas.question.service.QuestionService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("questions")
@@ -24,9 +23,27 @@ public class QuestionController {
         return questionService.getQuestions();
     }
 
-    @GetMapping("/test")
-    String test(@RequestParam String value){
-        return questionService.test(value);
+    @GetMapping("{id}")
+    Question getQuestion(@PathVariable UUID id){
+        return questionService.getQuestion(id);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    Question createQuestion(@RequestBody Question question){
+        return questionService.createQuestion(question);
+    }
+
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @PutMapping("{id}")
+    Question updateQuestion(@PathVariable UUID id, @RequestBody Question question){
+        return questionService.updateQuestion(id, question);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("{id}")
+    void deleteQuestion(@PathVariable UUID id){
+        questionService.deleteQuestion(id);
     }
 
 }
