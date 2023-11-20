@@ -30,4 +30,7 @@ public class QuestionService {
 
     public void deleteQuestion(UUID id) {
     }
+
+    public static class AnswerService {
+    }
 }

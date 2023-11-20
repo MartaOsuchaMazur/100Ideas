@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("questions")
+@RequestMapping("api/v1/questions")
 public class QuestionController {
 
-    private final QuestionService questionService;
+    private QuestionService questionService;
 
     public QuestionController(QuestionService questionService) {
         this.questionService = questionService;
