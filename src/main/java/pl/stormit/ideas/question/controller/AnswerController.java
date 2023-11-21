@@ -3,9 +3,8 @@ package pl.stormit.ideas.question.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.stormit.ideas.question.domain.model.Answer;
-import pl.stormit.ideas.question.domain.model.Question;
 import pl.stormit.ideas.question.service.AnswerService;
-import pl.stormit.ideas.question.service.QuestionService;
+
 
 import java.util.List;
 import java.util.UUID;
