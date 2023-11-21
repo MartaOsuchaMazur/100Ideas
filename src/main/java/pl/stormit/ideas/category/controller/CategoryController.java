@@ -1,9 +1,9 @@
-package pl.stormit.ideas.ideas.category.controller;
+package pl.stormit.ideas.category.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import pl.stormit.ideas.ideas.category.domain.model.Category;
-import pl.stormit.ideas.ideas.category.service.CategoryService;
+import pl.stormit.ideas.category.domain.model.Category;
+import pl.stormit.ideas.category.service.CategoryService;
 
 import java.util.List;
 import java.util.UUID;

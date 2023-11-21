@@ -1,7 +1,7 @@
-package pl.stormit.ideas.ideas.category.service;
+package pl.stormit.ideas.category.service;
 
 import org.springframework.stereotype.Service;
-import pl.stormit.ideas.ideas.category.domain.model.Category;
+import pl.stormit.ideas.category.domain.model.Category;
 
 import java.util.Arrays;
 import java.util.List;

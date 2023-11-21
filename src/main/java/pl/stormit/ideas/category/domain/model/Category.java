@@ -1,4 +1,4 @@
-package pl.stormit.ideas.ideas.category.domain.model;
+package pl.stormit.ideas.category.domain.model;
 
 import java.util.StringJoiner;
 import java.util.UUID;
