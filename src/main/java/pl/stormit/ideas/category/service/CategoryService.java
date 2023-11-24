@@ -10,22 +10,23 @@ import java.util.UUID;
 @Service
 public class CategoryService {
 
-    public List<Category> getCategories(UUID questionId) {
-        return Arrays.asList(new Category("Category 1"), new Category("Category 2"));
+    public List<Category> getCategories() {
+        return Arrays.asList(new Category("Category 1"), new Category("Category 2"), new Category("Category 3"));
     }
 
     public Category getCategory(UUID id) {
         return new Category("Category " + id);
     }
 
-    public Category createCategory(UUID questionId, Category category) {
-        return null;
+    public Category createCategory(Category category) {
+        category.setId(UUID.randomUUID());
+        return category;
     }
 
-    public Category updateCategory(UUID categoryId, Category category) {
-        return null;
+    public Category updateCategory(UUID id, Category category) {
+        return category;
     }
 
-    public void deleteCategory(UUID categoryId) {
+    public void deleteCategory(UUID id) {
     }
 }
