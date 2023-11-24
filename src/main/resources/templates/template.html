@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="head(title)"><script src="/js/color-modes.js"></script>
+<head th:fragment="head(title)">
+    <script src="/js/color-modes.js"></script>
 
     <!--    <base href="/admin/" />-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.881">
-    <title>Template</title>
+
+    <title th:text="${title}">Default template title</title>
 
 
    <!-- <link rel="stylesheet" href="/css/css3.css"> -->
@@ -190,7 +190,13 @@
 
     <div class="nav-scroller py-1 mb-3 border-bottom">
         <nav class="nav nav-underline justify-content-between">
-            <a th:each="category : ${categories}" th:text="${category.name}" class="nav-item nav-link link-body-emphasis active" href="#">Category</a>
+            <a class="p-2 link-secondary" href="#">World</a>
+            <a class="p-2 link-secondary" href="#">Technology</a>
+            <a class="p-2 link-secondary" href="#">Design</a>
+            <a class="p-2 link-secondary" href="#">Business</a>
+            <a class="p-2 link-secondary" href="#">Science</a>
+
+            <!--<a th:each="category : ${categories}" th:text="${category.name}" class="nav-item nav-link link-body-emphasis active" href="#">Category</a>  -->
 
         </nav>
     </div>
