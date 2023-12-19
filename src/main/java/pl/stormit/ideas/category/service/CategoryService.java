@@ -1,6 +1,7 @@
 package pl.stormit.ideas.category.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.stormit.ideas.category.domain.model.Category;
 import pl.stormit.ideas.category.domain.repository.CategoryRepository;
 
@@ -17,14 +18,17 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
+    @Transactional(readOnly = true)
     public List<Category> getCategories() {
         return categoryRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Category getCategory(UUID id) {
         return categoryRepository.getById(id);
     }
 
+    @Transactional
     public Category createCategory(Category categoryRequest) {
         Category category = new Category();
 
@@ -33,6 +37,7 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
+    @Transactional
     public Category updateCategory(UUID id, Category categoryRequest) {
         Category category = categoryRepository.getById(id);
         category.setName(categoryRequest.getName());
@@ -40,6 +45,7 @@ public class CategoryService {
         return categoryRepository.save(category);
     }
 
+    @Transactional
     public void deleteCategory(UUID id) {
         categoryRepository.deleteById(id);
     }
