@@ -1,5 +1,6 @@
 package pl.stormit.ideas.category.service;
 
+import jakarta.validation.constraints.Null;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,16 @@ public class CategoryService {
 
     @Transactional(readOnly = true)
     public Page<Category> getCategories(Pageable pageable) {
-        return categoryRepository.findAll(pageable);
+        return getCategories(null, pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Category> getCategories(String search, Pageable pageable) {
+        if (search == null) {
+            return categoryRepository.findAll(pageable);
+        } else {
+            return categoryRepository.findByNameContainingIgnoreCase(search, pageable);
+        }
     }
 
     @Transactional(readOnly = true)
