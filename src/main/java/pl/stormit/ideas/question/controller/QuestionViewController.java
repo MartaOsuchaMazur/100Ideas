@@ -1,6 +1,8 @@
 package pl.stormit.ideas.question.controller;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,7 +33,8 @@ public class QuestionViewController {
     @GetMapping
     public String indexView(Model model){
         model.addAttribute("questions", questionService.getQuestions());
-        model.addAttribute("categories", categoryService.getCategories(Pageable.unpaged()));//wyświetlamy jak było, bez stronnicowania
+        model.addAttribute("categories", categoryService.getCategories(PageRequest.of(0, 10, Sort.by("name").ascending())));
+
         return "question/index";
     }
 
