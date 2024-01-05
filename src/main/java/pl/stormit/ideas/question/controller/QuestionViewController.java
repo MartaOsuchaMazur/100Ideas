@@ -1,14 +1,12 @@
 package pl.stormit.ideas.question.controller;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.stormit.ideas.category.service.CategoryService;
 import pl.stormit.ideas.question.domain.model.Question;
 import pl.stormit.ideas.question.service.AnswerService;
@@ -58,5 +56,16 @@ public class QuestionViewController {
         questionService.createQuestion(question);
 
         return "redirect:/questions";
+    }
+
+    public String hotView(
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            Model model
+    ){
+        PageRequest pageRequest = PageRequest.of(page -1, 2);
+        Page<Question> questionsPage = questionService.findHot(pageRequest);
+        model.addAttribute("questionsPage", questionsPage);
+
+        return "question/index";
     }
 }
