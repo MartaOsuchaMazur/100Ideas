@@ -28,20 +28,23 @@ public class QuestionApiController {
         return questionService.getQuestion(id);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
+
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     Question createQuestion(@RequestBody Question question){
         return questionService.createQuestion(question);
     }
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
+
     @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     Question updateQuestion(@PathVariable UUID id, @RequestBody Question question){
         return questionService.updateQuestion(id, question);
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+
     @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteQuestion(@PathVariable UUID id){
         questionService.deleteQuestion(id);
     }

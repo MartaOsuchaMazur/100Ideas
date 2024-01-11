@@ -1,14 +1,12 @@
 package pl.stormit.ideas.question.service;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.stormit.ideas.question.domain.model.Question;
 import pl.stormit.ideas.question.domain.repository.QuestionRepository;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -58,8 +56,18 @@ public class QuestionService {
         return questionRepository.findAllByCategoryId(id);
     }
 
+    @Transactional(readOnly = true)
     public Page<Question> findHot(Pageable pageable) {
         return questionRepository.findHot(pageable);
+    }
 
+    @Transactional(readOnly = true)
+    public Page<Question> findUnanswered(Pageable pageable) {
+        return questionRepository.findUnanswered(pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Question> findByQuery(String query, Pageable pageable) {
+        return questionRepository.findByQuery(query, pageable);
     }
 }

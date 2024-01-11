@@ -14,10 +14,9 @@ import pl.stormit.ideas.category.domain.model.Category;
 import pl.stormit.ideas.category.service.CategoryService;
 import pl.stormit.ideas.common.dto.Message;
 
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+
+import static pl.stormit.ideas.common.controller.ControllerUtils.paging;
 
 @Controller
 @RequestMapping("/admin/categories")
@@ -51,6 +50,7 @@ public class CategoryAdminViewController {
         model.addAttribute("categoriesPage", categoriesPage);
         model.addAttribute("search", search);
         model.addAttribute("reverseSort", reverseSort);
+
         paging(model, categoriesPage);
 
         return "admin/category/index";
@@ -90,15 +90,5 @@ public class CategoryAdminViewController {
         ra.addFlashAttribute("message", Message.info("Kategoria usunięta"));
 
         return "redirect:/admin/categories";
-    }
-
-    private void paging(Model model, Page page){
-        int totalPages = page.getTotalPages();
-        if (totalPages > 0){
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
     }
 }

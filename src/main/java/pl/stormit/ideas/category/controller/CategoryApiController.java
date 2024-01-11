@@ -30,20 +30,23 @@ public class CategoryApiController {
         return categoryService.getCategory(id);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
+
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     Category createCategory(@RequestBody Category category){
         return categoryService.createCategory(category);
     }
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
+
     @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     Category updateCategory(@PathVariable UUID id, @RequestBody Category category){
         return categoryService.updateCategory(id, category);
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+
     @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteCategory(@PathVariable UUID id){
         categoryService.deleteCategory(id);
     }

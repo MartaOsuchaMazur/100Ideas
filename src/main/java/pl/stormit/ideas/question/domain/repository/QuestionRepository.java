@@ -15,6 +15,17 @@ public interface QuestionRepository extends JpaRepository<Question, UUID> {
 
     List<Question> findAllByCategoryId(UUID id);
 
-    @Query("from Question q order by q.answers.size desc")
+    @Query("from Question q order by size(q.answers) desc")
     Page<Question> findHot(Pageable pageable);
+
+    @Query("from Question q where size(q.answers) = 0")
+    Page<Question> findUnanswered(Pageable pageable);
+
+    @Query(
+           value = "select * from questions q where upper(q.name) like upper('%' || :query || '%') ",
+           countQuery = "select count(*) from questions q where upper(q.name) like upper('%' || :query || '%') ",
+           nativeQuery = true
+    )
+
+  Page<Question> findByQuery(String query, Pageable pageable);
 }

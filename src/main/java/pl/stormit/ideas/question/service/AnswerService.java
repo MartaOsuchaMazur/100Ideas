@@ -7,7 +7,6 @@ import pl.stormit.ideas.question.domain.model.Question;
 import pl.stormit.ideas.question.domain.repository.AnswerRepository;
 import pl.stormit.ideas.question.domain.repository.QuestionRepository;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 

@@ -1,6 +1,5 @@
 package pl.stormit.ideas.category.service;
 
-import jakarta.validation.constraints.Null;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -8,8 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.stormit.ideas.category.domain.model.Category;
 import pl.stormit.ideas.category.domain.repository.CategoryRepository;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 @Service

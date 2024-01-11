@@ -1,10 +1,16 @@
 package pl.stormit.ideas.question.domain.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import pl.stormit.ideas.category.domain.model.Category;
 
 import java.util.*;
 
+@ToString
+@Getter
+@Setter
 @Entity
 @Table(name="questions")
 public class Question {
@@ -41,30 +47,6 @@ public class Question {
 
     public Set<Answer> getAnswers() {
         return Collections.unmodifiableSet(answers);
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override
