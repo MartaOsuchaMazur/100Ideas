@@ -17,8 +17,10 @@ import java.util.UUID;
 @Entity
 @Table(name="answers")
 public class Answer {
+
     @Id
     private UUID id;
+
     private String name;
 
     @ManyToOne
@@ -32,13 +34,5 @@ public class Answer {
         this();
         this.name = name;
 
-    }
-
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", Answer.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("name='" + name + "'")
-                .toString();
     }
 }

@@ -6,7 +6,9 @@ import lombok.Setter;
 import lombok.ToString;
 import pl.stormit.ideas.category.domain.model.Category;
 
-import java.util.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.UUID;
 
 @ToString
 @Getter
@@ -14,8 +16,10 @@ import java.util.*;
 @Entity
 @Table(name="questions")
 public class Question {
+
     @Id
     private UUID id;
+
     private String name;
 
     @ManyToOne
@@ -43,17 +47,5 @@ public class Question {
         answers.add(answer);
 
         return this;
-    }
-
-    public Set<Answer> getAnswers() {
-        return Collections.unmodifiableSet(answers);
-    }
-
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", Question.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("name='" + name + "'")
-                .toString();
     }
 }
