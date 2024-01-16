@@ -1,5 +1,6 @@
 package pl.stormit.ideas.category.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -11,14 +12,11 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("api/v1/categories")
 public class CategoryApiController {
 
     private final CategoryService categoryService;
-
-    public CategoryApiController(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
 
     @GetMapping
     Page<Category> getCategories(Pageable pageable){
