@@ -96,10 +96,4 @@ public class QuestionService {
                 .map(questionMapper::map)
                 .collect(Collectors.toList());
     }
-
-    @Transactional(readOnly = true)
-    public StatisticsDto statistics() {
-        return questionRepository.statistics();
-    }
-
 }

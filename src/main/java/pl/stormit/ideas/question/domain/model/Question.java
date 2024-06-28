@@ -42,6 +42,17 @@ public class Question {
         this.name = name;
     }
 
+    @PrePersist
+    void prePersist() {
+        created = LocalDateTime.now();
+        modified = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    void preUpdate() {
+        modified = LocalDateTime.now();
+    }
+
     public Question addAnswer(Answer answer){
         if(answers == null){
             answers = new LinkedHashSet<>();
