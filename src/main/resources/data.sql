@@ -24,11 +24,11 @@ insert into categories (id, name) values
     (gen_random_uuid(), 'Związki'),
     (gen_random_uuid(), 'Inne');
 
---select * from questions;
+select * from questions;
 insert into questions (id, name, category_id) values
            (gen_random_uuid(), 'Gdzie najlepiej spędzić wakacje w Polsce', (select id from categories where name = 'Turystyka')),
            (gen_random_uuid(), 'Gdzie najlepiej spędzić wakacje w Europie', (select id from categories where name = 'Turystyka'));
 
 insert into questions (id, name, category_id) values
-                                                  (gen_random_uuid(), 'Dlaczego warto uczyć się programowania', (select id from categories where name = 'Edukacja')),
-                                                  (gen_random_uuid(), 'Dlaczego Java jest dobrym językiem na start', (select id from categories where name = 'Edukacja'));
+            (gen_random_uuid(), 'Dlaczego warto uczyć się programowania', (select id from categories where name = 'Edukacja')),
+            (gen_random_uuid(), 'Dlaczego Java jest dobrym językiem na start', (select id from categories where name = 'Edukacja'));
