@@ -30,7 +30,7 @@ public class CategoryViewController extends IdeasCommonViewController {
 
         model.addAttribute("category", category);
         model.addAttribute("questions", questions);
-        addGLobalAttributes(model);
+        addGlobalAttributes(model);
 
         return "category/single";
     }

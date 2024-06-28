@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import pl.stormit.ideas.category.domain.model.Category;
 
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -28,6 +29,10 @@ public class Question {
     @OneToMany(mappedBy = "question")
     private Set<Answer> answers;
 
+    private LocalDateTime created;
+
+    private LocalDateTime modified;
+
     public Question() {
         this.id = UUID.randomUUID();
     }
@@ -35,7 +40,6 @@ public class Question {
     public Question(String name) {
         this();
         this.name = name;
-
     }
 
     public Question addAnswer(Answer answer){

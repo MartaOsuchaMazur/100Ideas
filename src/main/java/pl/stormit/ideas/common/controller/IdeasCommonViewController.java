@@ -11,7 +11,7 @@ public abstract class IdeasCommonViewController {
     @Autowired
     protected CategoryService categoryService;
 
-    protected void addGLobalAttributes(Model model) {
-        model.addAttribute("categories", categoryService.getCategories(PageRequest.of(0, 10, Sort.by("name").ascending())));
+    protected void addGlobalAttributes(Model model) {
+        model.addAttribute("categoriesTop", categoryService.getCategories(PageRequest.of(0, 10, Sort.by("name").ascending())));
     }
 }
