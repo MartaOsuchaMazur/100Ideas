@@ -31,4 +31,6 @@ public interface QuestionRepository extends JpaRepository<Question, UUID> {
     @Query(value = "select * from questions q order by random() limit :limit", nativeQuery = true)
     List<Question> findRandomQuestions(int limit);
 
+    @Query(value = "select new pl.stormit.ideas.common.dto.StatisticsDto(count(q), count(a)) from Question q join q.answers a")
+    StatisticsDto statistics();
 }

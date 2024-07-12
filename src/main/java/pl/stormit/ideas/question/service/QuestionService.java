@@ -81,6 +81,7 @@ public class QuestionService {
                 .map(questionMapper::map)
                 .collect(Collectors.toList());
     }
+
     @Transactional(readOnly = true)
     public List<QuestionDto> findTop(UUID categoryId, int limit) {
         return questionRepository.findAllByCategoryId(categoryId, PageRequest.of(0, limit))
@@ -95,5 +96,10 @@ public class QuestionService {
                 .stream()
                 .map(questionMapper::map)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public StatisticsDto statistics() {
+        return questionRepository.statistics();
     }
 }

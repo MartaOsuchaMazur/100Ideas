@@ -24,7 +24,7 @@ public class IndexViewController extends IdeasCommonViewController {
         addGlobalAttributes(model);
 
         List<QuestionDto> questionsTop = questionService.findTop(2);
-        model.addAttribute("questionTop", questionsTop);
+        model.addAttribute("questionsTop", questionsTop);
 
         List<CategoryWithStatisticsDto> categories = categoryService.findAllWithStatistics();
         model.addAttribute("categories", categories);
