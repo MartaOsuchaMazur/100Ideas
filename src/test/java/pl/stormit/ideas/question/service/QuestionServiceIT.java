@@ -9,6 +9,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import pl.stormit.ideas.category.domain.model.Category;
 import pl.stormit.ideas.category.domain.repository.CategoryRepository;
+import pl.stormit.ideas.common.dto.StatisticsDto;
 import pl.stormit.ideas.question.domain.model.Answer;
 import pl.stormit.ideas.question.domain.model.Question;
 import pl.stormit.ideas.question.domain.repository.AnswerRepository;
@@ -40,7 +41,9 @@ class QuestionServiceIT {
     @Test
     void shouldGetAllQuestions() {
         // given
+        answerRepository.deleteAll();
         questionRepository.deleteAll();
+
 
         questionRepository.saveAll(List.of(
                 new Question("Question1"),
@@ -148,6 +151,7 @@ class QuestionServiceIT {
     @Test
     void shouldFindHot() {
         // given
+        answerRepository.deleteAll();
         questionRepository.deleteAll();
 
         Question question1 = new Question("Question1");
@@ -173,6 +177,7 @@ class QuestionServiceIT {
     @Test
     void shouldFindUnanswered() {
         // given
+        answerRepository.deleteAll();
         questionRepository.deleteAll();
 
         Question question1 = new Question("Question1");
@@ -215,4 +220,28 @@ class QuestionServiceIT {
                 .extracting(Question::getId)
                 .containsExactlyInAnyOrder(question2.getId());
     }
+
+    @Test
+    void shouldReturnStatistics(){
+
+        answerRepository.deleteAll();
+        questionRepository.deleteAll();
+
+        questionRepository.saveAll(List.of(
+                new Question("Question1"),
+                new Question("Question2"),
+                new Question("Question3")));
+
+        StatisticsDto statistics = questionService.statistics();
+        List<Question> questions = questionService.getQuestions();
+
+        assertThat(statistics).isNotNull();
+
+        assertThat(questions)
+                .hasSize(3)
+                .extracting(Question :: getName)
+                .containsExactlyInAnyOrder("Question1", "Question2", "Question3");
+        }
+
+
 }
