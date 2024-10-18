@@ -3,6 +3,7 @@ package pl.stormit.ideas.question.service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.annotation.Rollback;
@@ -14,12 +15,14 @@ import pl.stormit.ideas.question.domain.model.Answer;
 import pl.stormit.ideas.question.domain.model.Question;
 import pl.stormit.ideas.question.domain.repository.AnswerRepository;
 import pl.stormit.ideas.question.domain.repository.QuestionRepository;
+import pl.stormit.ideas.question.dto.QuestionDto;
 
 import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @Transactional
@@ -37,6 +40,9 @@ class QuestionServiceIT {
 
     @Autowired
     private AnswerRepository answerRepository;
+
+    @MockBean
+    private QuestionMapper questionMapper;
 
     @Test
     void shouldGetAllQuestions() {
@@ -242,6 +248,20 @@ class QuestionServiceIT {
                 .extracting(Question :: getName)
                 .containsExactlyInAnyOrder("Question1", "Question2", "Question3");
         }
+    @Test
+    void shouldFindTop(){
 
+        answerRepository.deleteAll();
+        questionRepository.deleteAll();
 
+        questionRepository.saveAll(List.of(
+                new Question("Question1"),
+                new Question("Question2"),
+                new Question("Question3"),
+                new Question("Question4")));
+
+        List<QuestionDto> result = questionService.findTop(3);
+
+        assertThat(result).hasSize(3);
+    }
 }
